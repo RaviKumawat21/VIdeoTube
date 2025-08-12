@@ -1,0 +1,8 @@
+// We are using curly braces because expree uses the name export of the Router
+import { Router } from "express"; 
+import registerUser from "../controllers/user.controller.js"
+
+const router = Router();
+
+router.route("/register").post(registerUser);
+export default router;

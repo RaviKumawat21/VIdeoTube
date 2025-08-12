@@ -13,6 +13,7 @@ dotenv.config({
 //because whenever asynchronous operation is going to return then ir return in the form of promise
 connectionDB()
 .then(() => {
+    //Start the webserver and keep listening the http request on the PORT(which comes from the environment varible)
     app.listen((process.env.PORT || 8000), () => {
         console.log(`Server is running at PORT: ${process.env.PORT}`);
         
