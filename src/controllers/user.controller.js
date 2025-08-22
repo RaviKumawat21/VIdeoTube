@@ -10,18 +10,18 @@ import ApiResponse from "../utils/ApiResponse.js"
 const registerUser = asyncHandler(async(req,res) => {
     //Get user details from the fronted
     const {username, email, password, fullName} = req.body;
-    console.log(email);
+    // console.log();
 
     //Validation not empty
     if([username, email, password, fullName].some((feilds) =>
-    fields?.trim() === "") )
+    feilds?.trim() === "") )
     {
 
         throw new ApiError(400, "All fields are required");
     }
 
     //cheack if email is valid or not
-    const existedUser = User.findOne(
+    const existedUser = await User.findOne(
         {$or: [
             {email: email},
             {username: username}
@@ -59,7 +59,7 @@ const registerUser = asyncHandler(async(req,res) => {
 
     //Remove password and refresh token from the response
 
-    const createdUser = user.findById(user._id).select("-password -refreshToken");
+    const createdUser = await User.findById(user._id).select("-password -refreshToken");
 
     if(!createdUser)
     {

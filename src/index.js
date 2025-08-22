@@ -7,7 +7,7 @@ import connectionDB from "./db/index.js";
 import app from "./app.js";
 
 dotenv.config({
-    path: './env'
+    path: './.env'
 });
 
 //because whenever asynchronous operation is going to return then ir return in the form of promise
