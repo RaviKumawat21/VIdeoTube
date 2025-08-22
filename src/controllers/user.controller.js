@@ -154,6 +154,40 @@ const loginUser = asyncHandler(async(req, res) =>{
 
 })
 
-// Controller for the loggedOut
 
-export default registerUser;
+// Controller for the loggedOut
+const logoutUser = asyncHandler(async(req, res) => {
+  /*  //Algo:
+            1.Remove refreshToken from the db
+            2.Remove the cookies
+        //problem:
+            For removing refresh token from the db we need user access which is currently loggedIn which we doesNot have.(for this I am creating the auth middleware which i am injecting in the logout router. This auth middleware give me access of the current logged in user)     
+  */
+ await User.findByIdAndUpdate(
+        req.user._id,
+        {
+            $unset: {
+                refreshToken: 1 // this removes the field from document
+            }
+        },
+        {
+            new: true
+        }
+    )
+
+    const options = {
+        httpOnly: true,
+        secure: true
+    }
+
+    return res
+    .status(200)
+    .clearCookie("accessToken", options)
+    .clearCookie("refreshToken", options)
+    .json(new ApiResponse(200, {}, "User logged Out"))
+})
+
+export { registerUser,
+          loginUser,
+          logoutUser
+        };
