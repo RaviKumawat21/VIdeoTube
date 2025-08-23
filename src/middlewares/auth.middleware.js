@@ -1,6 +1,6 @@
 import asyncHandler from "../utils/asyncHandlers.js"
 import jwt from "jsonwebtoken"
-import { JsonWebTokenError } from "jsonwebtoken"
+
 import ApiError from "../utils/ApiError.js"
 import User from "../models/user.model.js"
 

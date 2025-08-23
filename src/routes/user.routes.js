@@ -20,6 +20,6 @@ router.route("/register").post(
     ])
     ,registerUser);
 
-router.route("login").post(loginUser) ;
-router.route("logout").post(varifyJWT,logoutUser);   
+router.route("/login").post(loginUser) ;
+router.route("/logout").post(varifyJWT,logoutUser);   
 export default router;

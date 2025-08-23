@@ -7,7 +7,11 @@ import ApiResponse from "../utils/ApiResponse.js"
 
 const generateRefreshAndAccessToken = async(user_id) => {
     try {
-        const user = await findById(user_id);
+        const user = await User.findById(user_id);
+        if(!user)
+        {
+            throw new ApiError(404, "User not found");
+        }
 
         const accessToken = user.generateAccessToken();
         const refreshToken = user.generateRefreshToken();
@@ -50,8 +54,8 @@ const registerUser = asyncHandler(async(req,res) => {
 
 
     //cheack for avatar and images
-    const avatarLocalPath = req.files?.avatar[0]?.path;
-    const coverImageLocalPath = req.files?.coverImage[0]?.path;
+    const avatarLocalPath = req.files?.avatar?.[0]?.path;
+    const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
        
     //upload them to cloudinary
     if(!avatarLocalPath )
@@ -102,7 +106,9 @@ const loginUser = asyncHandler(async(req, res) =>{
 
 
 
-    const {email, username, password} = req.body();
+    const {email, username, password} = req.body;
+    console.log(email);
+    
 
     if( !email && !username){
         throw new ApiError(400, "Email or username is required for the login")
@@ -114,6 +120,7 @@ const loginUser = asyncHandler(async(req, res) =>{
         }
         
     )
+    // console.log(user);
 
 
     if(!user){
