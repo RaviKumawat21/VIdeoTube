@@ -309,7 +309,7 @@ const updateUserAvatar = asyncHandler(async(req, res) => {
     }
 
     //TODO: delete old image - assignment
-    
+
 
     const avatar = await uploadOnCloudinary(avatarLocalPath)
 
@@ -374,5 +374,8 @@ export { registerUser,
           logoutUser,
           refreshAccessToken,
           changePassword,
-          updateUserProfile
+          updateUserProfile,
+          getUser,
+          updateUserAvatar,
+          updateUserCoverImage
         };
