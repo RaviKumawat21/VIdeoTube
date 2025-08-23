@@ -14,9 +14,10 @@ import User from "../models/user.model.js"
 
             try {
                 const token = req.cookies?.accessToken ||  req.header("Authorization")?.replace("Bearer ", "")
+                // console.log("Token Received",token);
     
                 if(!token){
-                    throw new ApiError(404,"unauthorized user");
+                    throw new ApiError(404,"no token provided");
                 }
                  const decodedToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
         
@@ -30,7 +31,7 @@ import User from "../models/user.model.js"
             req.user = user;
             next()
             } catch (error) {
-                throw new ApiError(401, "unauthorized user")
+                throw new ApiError(401, "unauthorized user"+ error?.message)
             }
 
 }

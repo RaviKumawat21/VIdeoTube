@@ -17,12 +17,12 @@ const generateRefreshAndAccessToken = async(user_id) => {
         const refreshToken = user.generateRefreshToken();
 
         user.refreshToken = refreshToken // adding the refresh token in the user schema
-        user.save({validateBeforeSave : false})
+        await user.save({validateBeforeSave : false})
 
         return {accessToken, refreshToken};
         
     } catch (error) {
-        throw new ApiError(500, "Unable to generate refresh and access token")
+        throw new ApiError(500,"Unable to generate refresh and access token",error?.message  )
     }
 }
 
@@ -107,7 +107,7 @@ const loginUser = asyncHandler(async(req, res) =>{
 
 
     const {email, username, password} = req.body;
-    console.log(email);
+    // console.log(email);
     
 
     if( !email && !username){
