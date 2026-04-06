@@ -1,0 +1,83 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+
+\title{\textbf{VideoTube Frontend Architecture & Implementation Plan}}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Overview}
+A modern, highly-scalable React frontend consuming the VideoTube backend APIs, utilizing Tailwind CSS, Redux Toolkit, and React Router.
+
+\section*{Phase 1: Foundation & Dependencies}
+\begin{enumerate}[label=\arabic*.]
+\item Initialize core routing and state tools: \texttt{react-router-dom}, \texttt{@reduxjs/toolkit}, \texttt{react-redux}.
+\item Configure Tailwind CSS: \texttt{tailwindcss}, \texttt{postcss}, \texttt{autoprefixer}.
+\item Set up Axios for data fetching with a custom instance and interceptors for JWT handling.
+\item Optional: Rename \texttt{componants/} to \texttt{components/}. Create \texttt{hooks/} and \texttt{utils/}.
+\end{enumerate}
+
+\section*{Phase 2: Core Configuration}
+\begin{enumerate}[label=\arabic*.]
+\item Set up Redux store in \texttt{src/store/store.js}.
+\item Create \texttt{authSlice} to manage global user state.
+\item Configure environment variables in \texttt{.env} and map them in \texttt{src/conf/config.js}.
+\end{enumerate}
+
+\section*{Phase 3: Routing & Layouts}
+\begin{enumerate}[label=\arabic*.]
+\item Define routing using \texttt{createBrowserRouter} or \texttt{<Routes>}.
+\item Build \texttt{AppLayout} with Header, Sidebar, and \texttt{<Outlet />}.
+\item Create \texttt{AuthLayout} for protected routing.
+\end{enumerate}
+
+\section*{Phase 4: Component Construction}
+\begin{enumerate}[label=\arabic*.]
+\item Build reusable UI components: Button, Input, Logo, VideoCard, Loader, Avatar.
+\item Build authentication components: Login Form and Registration Form.
+\end{enumerate}
+
+\section*{Phase 5: Page Implementation}
+\begin{enumerate}[label=\arabic*.]
+\item Home Page: Fetch all videos with pagination or infinite scroll.
+\item Authentication Pages: Login and Signup.
+\item Video Detail Page: Video player, metadata, like/subscribe buttons, comments.
+\item Channel Profile Page: User info, subscribers, uploaded videos.
+\item Dashboard: Creator tools and channel stats.
+\item Interaction Pages: Liked videos, history, playlists.
+\end{enumerate}
+
+\section*{Relevant Files}
+\begin{itemize}
+\item \texttt{frontend/package.json} — dependencies.
+\item \texttt{frontend/src/store} — Redux setup.
+\item \texttt{frontend/src/conf} — API configuration.
+\end{itemize}
+
+\section*{Verification}
+\begin{enumerate}
+\item Axios interceptors refresh token on 401 errors.
+\item Protected routes redirect unauthenticated users.
+\item Environment variables resolve correct backend URL.
+\end{enumerate}
+
+\section*{Decisions}
+\begin{itemize}
+\item Redux for authentication state.
+\item API fetching handled locally with \texttt{useEffect}.
+\item Persistent Sidebar and Header layout.
+\end{itemize}
+
+\section*{Further Considerations}
+\begin{enumerate}
+\item File uploads using \texttt{FormData} for avatar, cover image, and video.
+\item Consider using data table libraries like \texttt{react-table} or \texttt{ag-grid}.
+\end{enumerate}
+
+\end{document}
