@@ -8,7 +8,7 @@ function App() {
   
   return (
     <>
-      
+      <h1 className='text-amber-300'>VideoTube</h1>
     </>
   )
 }
