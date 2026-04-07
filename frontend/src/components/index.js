@@ -1,6 +1,11 @@
+// frontend/src/components/index.js
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import AppLayout from "./AppLayout";
 import AuthLayout from "./AuthLayout";
+import Logo from "./Logo";
+import Button from "./Button";
+import Input from "./Input";
+import Loader from "./Loader";
 
-export {Header, Sidebar, AppLayout, AuthLayout};
+export { Header, Sidebar, AppLayout, AuthLayout, Logo, Button, Input, Loader };
