@@ -9,5 +9,6 @@ import Input from "./Input";
 import Loader from "./Loader";
 import Login from "./Auth/Login";
 import SignUp from "./Auth/SignUp";
+import VideoCard from "./VideoCard";
 
-export { Header, Sidebar, AppLayout, AuthLayout, Logo, Button, Input, Loader, Login, SignUp };
+export { Header, Sidebar, AppLayout, AuthLayout, Logo, Button, Input, Loader, Login, SignUp, VideoCard };
