@@ -46,7 +46,16 @@ export default function SignUp() {
                navigate("/login"); 
             }
         } catch (err) {
-            setError(err.response?.data?.message || "Registration failed. Try checking your info.");
+             // First, see if the backend expressly sent a message we can read
+            const backendMessage = err.response?.data?.message;
+
+            // If the status is 409, we know exactly what conflict occurred
+            if (err.response?.status === 409) {
+                setError(backendMessage || "A user with this email or username already exists. Please try another one.");
+            } else {
+                // Generic fallback for other errors (like 500 server error or validation fail)
+                setError(backendMessage || "Registration failed. Please make sure all your information is correct.");
+            }
         } finally {
             setLoading(false);
         }
