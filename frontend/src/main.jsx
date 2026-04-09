@@ -10,8 +10,10 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { AppLayout, AuthLayout,Login, SignUp } from "./components/index.js";
 import store from "./store/store";
 
+import { Home } from "./pages/index.js";
+
 // Temporary dummy components for routing demonstration
-const Home = () => <h1 className="text-2xl font-bold">Home Page Feed</h1>;
+
 
 const Dashboard = () => (
   <h1 className="text-2xl font-bold">Creator Dashboard</h1>

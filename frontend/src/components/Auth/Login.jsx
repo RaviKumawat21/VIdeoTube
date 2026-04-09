@@ -20,8 +20,13 @@ export default function Login(){
         setLoading(true);
         setError("");
         try {
-            const response = await axiosInstance.post("/users/login", data);
+            const loginData = {
+    password: data.password,
+    // If it has an '@', send as email. Otherwise, send as username.
+    ...(data.identifier.includes("@") ? { email: data.identifier } : { username: data.identifier })
+};
 
+            const response = await axiosInstance.post("/users/login", loginData);
             const userData = response.data.message.user;
 
             if(userData){
@@ -49,10 +54,10 @@ export default function Login(){
                     <div className="space-y-5">
                         {/* TODO : IS THIS HANDEL THE USENAME ALSO? */}
                         <Input
-                            label="Email or Username:"
-                            placeholder="Enter your email or username"
-                            {...register("email", { required: true })} // Change string based on your backend logic
-                        />
+    label="Email or Username:"
+    placeholder="Enter your email or username"
+    {...register("identifier", { required: true })} // Changed from "email" to "identifier"
+/>
                         <Input
                             label="Password:"
                             type="password"
